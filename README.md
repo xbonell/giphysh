@@ -1,8 +1,17 @@
-# Getting Started with Create React App
+# GIPHYSH
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ForceManager - Front-End Coding Challenge 
+ 
+Build a React application that allows you to search and copy Giphy’s gifs url. 
+
+### Reference links:
+
+- [https://developers.giphy.com/docs/api/endpoint/#search](https://developers.giphy.com/docs/api/endpoint/#search)
+- [https://chakra-ui.com/guides/getting-started/cra-guide](https://chakra-ui.com/guides/getting-started/cra-guide)
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
