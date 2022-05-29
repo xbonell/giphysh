@@ -8,7 +8,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { CloseIcon, SearchIcon } from "@chakra-ui/icons";
-import { useGiphyshContext } from "../Context";
+import { useGiphyshContext } from "../hooks/Context";
 
 const Form = () => {
   const debounce = useRef(null);

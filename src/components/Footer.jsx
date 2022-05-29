@@ -1,6 +1,6 @@
 import { memo, useMemo } from "react";
 import { Button, VStack, Text } from "@chakra-ui/react";
-import { useGiphyshContext } from "../Context";
+import { useGiphyshContext } from "../hooks/Context";
 
 const Footer = () => {
   const { state, handleSearch } = useGiphyshContext();

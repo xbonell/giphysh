@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { extendTheme, ChakraProvider, VStack } from "@chakra-ui/react";
-import { GiphyshProvider } from "./Context";
+import { GiphyshProvider } from "./hooks/Context";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import SearchResults from "./components/SearchResults";

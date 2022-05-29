@@ -1,6 +1,6 @@
 import { memo, useMemo } from "react";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
-import { useGiphyshContext } from "../Context";
+import { useGiphyshContext } from "../hooks/Context";
 import SearchResultsItem from "./SearchResultsItem";
 
 const SearchResults = () => {

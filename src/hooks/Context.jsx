@@ -6,8 +6,8 @@ import {
   useState,
   useRef,
 } from "react";
-import { CACHE } from "./utils/Constants";
-import { getGifs } from "./utils/Api";
+import { CACHE, LAST_SEARCH_KEY } from "../utils/Constants";
+import { getGifs } from "../utils/Api";
 
 export const GiphyshContext = createContext();
 
@@ -20,39 +20,39 @@ export const GiphyshProvider = ({ children }) => {
   const [state, setState] = useState({
     data: [],
     loading: false,
-    search: CACHE.getItem("gf_lastSearch") || "",
+    search: CACHE.getItem(LAST_SEARCH_KEY) || "",
     lastSearch: {},
   });
 
-  const handleStateChange = useCallback((payload) => {
+  const handleChange = useCallback((payload) => {
     setState((state) => ({ ...state, ...payload }));
   }, []);
 
   const handleSearch = useCallback(
     (query, offset) => {
-      handleStateChange({ loading: true });
+      handleChange({ loading: true });
       getGifs({ query, offset })
         .then((response) => {
           let newData;
           if (response.data.pagination.total_count === 0) {
             newData = [];
           } else if (searchRef.current !== query) {
-            CACHE.setItem("gf_lastSearch", query || "");
+            CACHE.setItem(LAST_SEARCH_KEY, query || "");
             newData = response.data.data;
             searchRef.current = query;
           } else {
-            CACHE.setItem("gf_lastSearch", query || "");
+            CACHE.setItem(LAST_SEARCH_KEY, query || "");
             newData = [...state.data, ...response.data.data];
           }
 
-          handleStateChange({ lastSearch: response.data, data: newData });
+          handleChange({ lastSearch: response.data, data: newData });
         })
         .catch((error) => console.log(error))
         .finally(() => {
-          handleStateChange({ loading: false });
+          handleChange({ loading: false });
         });
     },
-    [handleStateChange, state.data]
+    [handleChange, state.data]
   );
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const GiphyshProvider = ({ children }) => {
 
   return (
     <GiphyshContext.Provider
-      value={{ state, setState: handleStateChange, handleSearch }}
+      value={{ state, setState: handleChange, handleSearch }}
     >
       {children}
     </GiphyshContext.Provider>
